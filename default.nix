@@ -15,4 +15,5 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
+  qpoases = pkgs.callPackage ./pkgs/qpoases { };
 }
