@@ -16,4 +16,10 @@
 
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
+  omniorb = pkgs.omniorb.overrideAttrs (finalAttrs: previousAttrs: {
+    postInstall = "rm $out/${pkgs.python3.sitePackages}/omniidl_be/__init__.py";
+  });
+  omniorbpy = pkgs.python3Packages.toPythonModule (pkgs.callPackage ./pkgs/omniorbpy {
+    inherit (pkgs) python3Packages;
+  });
 }
