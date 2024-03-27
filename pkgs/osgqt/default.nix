@@ -4,7 +4,8 @@
   lib,
   cmake,
   openscenegraph,
-  qtbase, wrapQtAppsHook
+  qtbase,
+  wrapQtAppsHook,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -18,18 +19,14 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-iUeIqRDlcAHdKXWAi4WhEaOCxa7ZivQw0K5E7ccEKnM=";
   };
 
-  buildInputs = [
-    qtbase
-  ];
+  buildInputs = [ qtbase ];
 
   nativeBuildInputs = [
     cmake
     wrapQtAppsHook
   ];
 
-  propagatedBuildInputs = [
-    openscenegraph
-  ];
+  propagatedBuildInputs = [ openscenegraph ];
 
   cmakeFlags = [
     "-DDESIRED_QT_VERSION=5"
