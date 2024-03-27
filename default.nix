@@ -14,12 +14,24 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
+  gruppled-black-cursors = pkgs.callPackage ./pkgs/gruppled-cursors {
+    theme = "gruppled_black";
+  };
+  gruppled-black-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
+    theme = "gruppled_black_lite";
+  };
+  gruppled-white-cursors = pkgs.callPackage ./pkgs/gruppled-cursors {
+    theme = "gruppled_white";
+  };
+  gruppled-white-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
+    theme = "gruppled_white_lite";
+  };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
-  qpoases = pkgs.callPackage ./pkgs/qpoases { };
   omniorb = pkgs.omniorb.overrideAttrs (finalAttrs: previousAttrs: {
     postInstall = "rm $out/${pkgs.python3.sitePackages}/omniidl_be/__init__.py";
   });
   omniorbpy = pkgs.python3Packages.toPythonModule (pkgs.callPackage ./pkgs/omniorbpy {
     inherit (pkgs) python3Packages;
   });
+  qpoases = pkgs.callPackage ./pkgs/qpoases { };
 }
