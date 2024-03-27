@@ -57,5 +57,6 @@ in {
     inherit (pkgs) python3Packages;
   });
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
+  sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
 }
