@@ -60,6 +60,7 @@ in {
   py-omniorbpy = pkgs.python3Packages.toPythonModule (pkgs.callPackage ./pkgs/omniorbpy {
     inherit (pkgs) python3Packages;
   });
+  qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
