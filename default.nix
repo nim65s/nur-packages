@@ -55,16 +55,8 @@ in
     theme = "gruppled_white_lite";
   };
   ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
-  omniorb = pkgs.omniorb.overrideAttrs (
-    finalAttrs: previousAttrs: {
-      postInstall = "rm $out/${pkgs.python3.sitePackages}/omniidl_be/__init__.py";
-    }
-  );
   py-ndcurves = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/ndcurves { pythonSupport = true; }
-  );
-  py-omniorbpy = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/omniorbpy { inherit (pkgs) python3Packages; }
   );
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
