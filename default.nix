@@ -36,6 +36,7 @@ let
       };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
+  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt qgv; };
 in
 {
   # The `lib`, `modules`, and `overlays` names are special
@@ -43,9 +44,11 @@ in
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  inherit osgqt qgv;
+  inherit gepetto-viewer osgqt qgv;
 
-  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt qgv; };
+  gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
+    inherit gepetto-viewer;
+  };
   gruppled-black-cursors = pkgs.callPackage ./pkgs/gruppled-cursors { theme = "gruppled_black"; };
   gruppled-black-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
     theme = "gruppled_black_lite";
