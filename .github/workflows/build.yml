@@ -16,9 +16,9 @@ jobs:
         cachixName:
           - nim65s-nur
         nixPath:
-          - nixpkgs=channel:nixos-unstable
-          - nixpkgs=channel:nixpkgs-unstable
-          - nixpkgs=channel:nixos-23.11
+          #- nixpkgs=channel:nixos-unstable
+          #- nixpkgs=channel:nixpkgs-unstable
+          #- nixpkgs=channel:nixos-23.11
           - nixpkgs=https://github.com/nim65s/nixpkgs/archive/nim.tar.gz
     runs-on: ubuntu-latest
     steps:
