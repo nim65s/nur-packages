@@ -36,6 +36,7 @@ let
       };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
+  qpoases = pkgs.callPackage ./pkgs/qpoases { };
   gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt qgv; };
 in
 {
@@ -44,7 +45,12 @@ in
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  inherit gepetto-viewer osgqt qgv;
+  inherit
+    gepetto-viewer
+    osgqt
+    qgv
+    qpoases
+    ;
 
   gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
     inherit gepetto-viewer;
@@ -57,11 +63,17 @@ in
   gruppled-white-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
     theme = "gruppled_white_lite";
   };
+  hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { inherit qpoases; };
   ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
   py-ndcurves = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/ndcurves { pythonSupport = true; }
   );
-  qpoases = pkgs.callPackage ./pkgs/qpoases { };
+  py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
+    pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
+      pythonSupport = true;
+      inherit qpoases;
+    }
+  );
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
 }
