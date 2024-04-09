@@ -6,13 +6,15 @@
   cmake,
   doxygen,
   gepetto-viewer,
+  omniorb,
+  omniorbpy,
   pkg-config,
   python3,
   qtbase,
   wrapQtAppsHook,
 }:
 let
-  python = python3.withPackages (p: [ p.omniorbpy ]);
+  python = python3.withPackages (p: [ omniorbpy ]);
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "gepetto-viewer-corba";
@@ -39,8 +41,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     boost
-    qtbase
+    omniorb
     python
+    qtbase
   ];
 
   nativeBuildInputs = [

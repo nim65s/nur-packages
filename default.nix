@@ -34,10 +34,20 @@ let
           patches = [ ];
         };
       };
+  omniorb = pkgs.python3Packages.callPackage ./pkgs/omniorb { };
+  omniorbpy = pkgs.python3Packages.callPackage ./pkgs/omniorbpy { };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
+  python-qt = pkgs.callPackage ./pkgs/python-qt {
+    inherit (pkgs.qt5)
+      qmake
+      qttools
+      qtwebengine
+      qtxmlpatterns
+      ;
+  };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
-  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt qgv; };
+  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt python-qt qgv; };
 in
 {
   # The `lib`, `modules`, and `overlays` names are special
@@ -47,13 +57,16 @@ in
 
   inherit
     gepetto-viewer
+    omniorb
+    omniorbpy
     osgqt
+    python-qt
     qgv
     qpoases
     ;
 
   gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
-    inherit gepetto-viewer;
+    inherit gepetto-viewer omniorb omniorbpy;
   };
   gruppled-black-cursors = pkgs.callPackage ./pkgs/gruppled-cursors { theme = "gruppled_black"; };
   gruppled-black-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
