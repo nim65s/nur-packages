@@ -54,6 +54,6 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Utility classes to check the (robust) equilibrium of a system in contact with the environment.";
     homepage = "https://github.com/humanoid-path-planner/hpp-centroidal-dynamics";
     license = lib.licenses.bsd2;
-    maintainers = [ lib.mainainers.nim65s ];
+    maintainers = [ lib.maintainers.nim65s ];
   };
 })
