@@ -9,7 +9,6 @@ stdenv.mkDerivation (finalAttrs: {
   pname = "jrl-cmakemodules";
   version = "unstable-2024-04-11";
 
-
   src = fetchFromGitHub {
     owner = "jrl-umi3218";
     repo = finalAttrs.pname;
