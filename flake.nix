@@ -1,6 +1,6 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:nim65s/nixpkgs/pythonqt";
   outputs =
     { self, nixpkgs }:
     let
@@ -11,6 +11,7 @@
         "aarch64-linux"
         "armv6l-linux"
         "armv7l-linux"
+        "aarch64-darwin"
       ];
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
