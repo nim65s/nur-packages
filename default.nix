@@ -38,7 +38,6 @@ let
   omniorbpy = pkgs.python3Packages.callPackage ./pkgs/omniorbpy { };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
-  qpoases = pkgs.callPackage ./pkgs/qpoases { };
   gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
     inherit
       osgqt
@@ -51,13 +50,10 @@ let
       pythonSupport = true;
     }
   );
-  hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
-    inherit qpoases;
-  };
+  hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
       pythonSupport = true;
-      inherit qpoases;
     }
   );
   hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
@@ -98,7 +94,6 @@ in
     py-hpp-centroidal-dynamics
     py-hpp-bezier-com-traj
     qgv
-    qpoases
     ;
 
   gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
