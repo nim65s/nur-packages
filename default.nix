@@ -34,7 +34,6 @@ let
           patches = [ ];
         };
       };
-  jrl-cmakemodules = pkgs.callPackage ./pkgs/jrl-cmakemodules { };
   omniorb = pkgs.python3Packages.callPackage ./pkgs/omniorb { };
   omniorbpy = pkgs.python3Packages.callPackage ./pkgs/omniorbpy { };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
@@ -46,30 +45,28 @@ let
       qtxmlpatterns
       ;
   };
-  qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { inherit jrl-cmakemodules; };
+  qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
   gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
     inherit
-      jrl-cmakemodules
       osgqt
       python-qt
       qgv
       ;
   };
-  ndcurves = pkgs.callPackage ./pkgs/ndcurves { inherit jrl-cmakemodules; };
+  ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
   py-ndcurves = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/ndcurves {
-      inherit jrl-cmakemodules;
       pythonSupport = true;
     }
   );
   hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
-    inherit jrl-cmakemodules qpoases;
+    inherit qpoases;
   };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
       pythonSupport = true;
-      inherit jrl-cmakemodules qpoases;
+      inherit qpoases;
     }
   );
   hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
@@ -100,7 +97,6 @@ in
 
   inherit
     gepetto-viewer
-    jrl-cmakemodules
     omniorb
     omniorbpy
     ndcurves
@@ -129,7 +125,6 @@ in
   py-gepetto-viewer = pkgs.python3Packages.toPythonModule (
     pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
       inherit
-        jrl-cmakemodules
         osgqt
         python-qt
         qgv
