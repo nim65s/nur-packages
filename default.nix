@@ -104,14 +104,6 @@ in
   gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
     inherit gepetto-viewer omniorb omniorbpy;
   };
-  gruppled-black-cursors = pkgs.callPackage ./pkgs/gruppled-cursors { theme = "gruppled_black"; };
-  gruppled-black-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
-    theme = "gruppled_black_lite";
-  };
-  gruppled-white-cursors = pkgs.callPackage ./pkgs/gruppled-cursors { theme = "gruppled_white"; };
-  gruppled-white-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {
-    theme = "gruppled_white_lite";
-  };
   py-gepetto-viewer = pkgs.python3Packages.toPythonModule (
     pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
       inherit
