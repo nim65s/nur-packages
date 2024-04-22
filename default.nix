@@ -37,20 +37,11 @@ let
   omniorb = pkgs.python3Packages.callPackage ./pkgs/omniorb { };
   omniorbpy = pkgs.python3Packages.callPackage ./pkgs/omniorbpy { };
   osgqt = pkgs.libsForQt5.callPackage ./pkgs/osgqt { };
-  python-qt = pkgs.callPackage ./pkgs/python-qt {
-    inherit (pkgs.qt5)
-      qmake
-      qttools
-      qtwebengine
-      qtxmlpatterns
-      ;
-  };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
   qpoases = pkgs.callPackage ./pkgs/qpoases { };
   gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
     inherit
       osgqt
-      python-qt
       qgv
       ;
   };
@@ -106,7 +97,6 @@ in
     py-ndcurves
     py-hpp-centroidal-dynamics
     py-hpp-bezier-com-traj
-    python-qt
     qgv
     qpoases
     ;
@@ -126,7 +116,6 @@ in
     pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
       inherit
         osgqt
-        python-qt
         qgv
         ;
     }
