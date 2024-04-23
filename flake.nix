@@ -32,13 +32,13 @@
         {
           # don't put that in imports, or nix-direnv won't autoupdate
           devShells.default = pkgs.mkShell {
+            GEPETTO_GUI_PLUGIN_DIRS = "${pkgs.py-gepetto-viewer-corba.out}/lib";
             packages = with pkgs; [
               gepetto-viewer
               (python3.withPackages (
                 ps: with ps; [
                   example-robot-data
-                  gepetto-viewer
-                  gepetto-viewer-corba
+                  py-gepetto-viewer-corba
                 ]
               ))
             ];

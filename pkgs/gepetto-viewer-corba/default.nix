@@ -56,7 +56,10 @@ stdenv.mkDerivation (finalAttrs: {
     pkg-config
   ];
 
-  propagatedBuildInputs = [ gepetto-viewer ];
+  propagatedBuildInputs = [
+    gepetto-viewer
+    omniorbpy
+  ];
 
   doCheck = true;
 
