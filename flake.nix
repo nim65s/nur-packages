@@ -17,8 +17,7 @@
         ./imports/overlay.nix
         ./imports/formatter.nix
         #./imports/pkgs-by-name.nix
-        #./imports/pkgs-all.nix
-        ./imports/pkgs.nix
+        ./imports/pkgs-all.nix
       ];
 
       perSystem =

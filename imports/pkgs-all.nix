@@ -11,8 +11,6 @@
       ...
     }:
     {
-      packages = {
-        example2 = pkgs.callPackage ../pkgs/example2 { };
-      };
+      packages = import ../packages.nix { inherit pkgs; };
     };
 }
