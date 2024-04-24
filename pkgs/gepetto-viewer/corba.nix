@@ -25,13 +25,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchFromGitHub {
     owner = "gepetto";
-    repo = finalAttrs.pname;
+    repo = "gepetto-viewer-corba";
     rev = "v${finalAttrs.version}";
     hash = "sha256-/bpAs4ca/+QjWEGuHhuDT8Ts2Ggg+DZWETZfjho6E0w=";
   };
 
   outputs = [
-    "dev"
     "out"
     "doc"
   ];

@@ -88,7 +88,7 @@ in
     qgv
     ;
 
-  gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
+  gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer/corba.nix {
     inherit gepetto-viewer omniorb omniorbpy;
   };
   py-gepetto-viewer = pkgs.python3Packages.toPythonModule (
@@ -99,10 +99,12 @@ in
     }
   );
   py-gepetto-viewer-corba = pkgs.python3Packages.toPythonModule (
-    pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer-corba {
+    pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer/corba.nix {
       inherit gepetto-viewer omniorb omniorbpy;
     }
   );
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
+
+  gepetto-viewer-full = gepetto-viewer.withPlugins(ps: with ps; [ corba ]);
 }
