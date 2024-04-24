@@ -73,12 +73,16 @@ let
         ;
     }
   );
+  collada-dom = pkgs.callPackage ./pkgs/collada-dom { };
+  osg-dae = pkgs.openscenegraph.override { colladaSupport = true; opencollada = collada-dom; };
 in
 {
   inherit
+    collada-dom
     gepetto-viewer
     omniorb
     omniorbpy
+    osg-dae
     ndcurves
     hpp-centroidal-dynamics
     hpp-bezier-com-traj
@@ -88,6 +92,7 @@ in
     qgv
     ;
 
+  osgqt-dae = pkgs.osgqt.override { openscenegraph = osg-dae; };
   gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer/corba.nix {
     inherit gepetto-viewer omniorb omniorbpy;
   };
