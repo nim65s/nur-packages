@@ -58,6 +58,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   doCheck = true;
 
+  # display a black screen on wayland, so force XWayland for now.
+  # Might be fixed when upstream will be ready for Qt6.
+  qtWrapperArgs = [
+    "--set QT_QPA_PLATFORM xcb"
+  ];
+
   meta = {
     homepage = "https://github.com/gepetto/gepetto-viewer";
     license = lib.licenses.lgpl3Only;
