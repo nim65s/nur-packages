@@ -36,9 +36,14 @@ let
       };
   omniorb = pkgs.python3Packages.callPackage ./pkgs/omniorb { };
   omniorbpy = pkgs.python3Packages.callPackage ./pkgs/omniorbpy { };
+  osgqt = pkgs.callPackage ./pkgs/osgqt { };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
+  collada-dom = pkgs.callPackage ./pkgs/collada-dom { };
+  osg-dae = pkgs.openscenegraph.override { colladaSupport = true; opencollada = collada-dom; };
+  osgqt-dae = osgqt.override { openscenegraph = osg-dae; };
   gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
     inherit
+      osgqt-dae
       qgv
       ;
   };
@@ -73,8 +78,6 @@ let
         ;
     }
   );
-  collada-dom = pkgs.callPackage ./pkgs/collada-dom { };
-  osg-dae = pkgs.openscenegraph.override { colladaSupport = true; opencollada = collada-dom; };
 in
 {
   inherit
@@ -82,8 +85,9 @@ in
     gepetto-viewer
     omniorb
     omniorbpy
-    osg-dae
     ndcurves
+    osg-dae
+    osgqt-dae
     hpp-centroidal-dynamics
     hpp-bezier-com-traj
     py-ndcurves
@@ -92,13 +96,13 @@ in
     qgv
     ;
 
-  osgqt-dae = pkgs.osgqt.override { openscenegraph = osg-dae; };
   gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer/corba.nix {
     inherit gepetto-viewer omniorb omniorbpy;
   };
   py-gepetto-viewer = pkgs.python3Packages.toPythonModule (
     pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
       inherit
+        osgqt
         qgv
         ;
     }

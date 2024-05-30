@@ -38,6 +38,7 @@
                 ps: with ps; [
                   example-robot-data
                   meshcat
+                  pinocchio
                   pymeshlab
                 ]
               ))
