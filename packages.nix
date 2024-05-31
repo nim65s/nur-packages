@@ -85,6 +85,12 @@ let
         ;
     }
   );
+  hpp-environments = pkgs.callPackage ./pkgs/hpp-environments { };
+  py-hpp-environments = pkgs.python3Packages.toPythonModule (
+    pkgs.callPackage ./pkgs/hpp-environments {
+      pythonSupport = true;
+    }
+  );
 in
 {
   inherit
@@ -97,6 +103,8 @@ in
     osgqt-dae
     hpp-centroidal-dynamics
     hpp-bezier-com-traj
+    hpp-environments
+    py-hpp-environments
     #multicontact-api
     #py-multicontact-api
     py-ndcurves
