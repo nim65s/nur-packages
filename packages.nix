@@ -97,6 +97,7 @@ let
       pythonSupport = true;
     }
   );
+  hpp-util = pkgs.callPackage ./pkgs/hpp-util { };
 in
 {
   inherit
@@ -109,6 +110,7 @@ in
     osgqt-dae
     hpp-centroidal-dynamics
     hpp-bezier-com-traj
+    hpp-util
     hpp-environments
     py-hpp-environments
     hpp-universal-robot
