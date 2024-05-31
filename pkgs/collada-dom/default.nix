@@ -1,4 +1,13 @@
-{ stdenv, lib, fetchFromGitHub, cmake, boost, libxml2, minizip, readline }:
+{
+  stdenv,
+  lib,
+  fetchFromGitHub,
+  cmake,
+  boost,
+  libxml2,
+  minizip,
+  readline,
+}:
 
 stdenv.mkDerivation {
   pname = "collada-dom";

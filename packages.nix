@@ -53,6 +53,13 @@ let
       pythonSupport = true;
     }
   );
+  #multicontact-api = pkgs.callPackage ./pkgs/multicontact-api { };
+  #py-multicontact-api = pkgs.python3Packages.toPythonModule (
+    #pkgs.callPackage ./pkgs/multicontact-api {
+      #pythonSupport = true;
+    #}
+  #);
+
   hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
@@ -90,6 +97,8 @@ in
     osgqt-dae
     hpp-centroidal-dynamics
     hpp-bezier-com-traj
+    #multicontact-api
+    #py-multicontact-api
     py-ndcurves
     py-hpp-centroidal-dynamics
     py-hpp-bezier-com-traj
