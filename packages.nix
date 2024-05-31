@@ -91,6 +91,12 @@ let
       pythonSupport = true;
     }
   );
+  hpp-universal-robot = pkgs.callPackage ./pkgs/hpp-universal-robot { };
+  py-hpp-universal-robot = pkgs.python3Packages.toPythonModule (
+    pkgs.callPackage ./pkgs/hpp-universal-robot {
+      pythonSupport = true;
+    }
+  );
 in
 {
   inherit
@@ -105,6 +111,8 @@ in
     hpp-bezier-com-traj
     hpp-environments
     py-hpp-environments
+    hpp-universal-robot
+    py-hpp-universal-robot
     #multicontact-api
     #py-multicontact-api
     py-ndcurves

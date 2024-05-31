@@ -10,14 +10,14 @@
 }:
 
 stdenv.mkDerivation (finalAttrs: {
-  pname = "hpp-environments";
+  pname = "hpp-universal-robot";
   version = "5.0.0";
 
   src = fetchFromGitHub {
     owner = "humanoid-path-planner";
-    repo = "hpp-environments";
+    repo = "hpp-universal-robot";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-gvYIICVS4DHzVeSrZZs3tszaIV7EBCOWLs9UJ7H9ZY4=";
+    hash = "sha256-fmyOCDobWjFdPsSEK7yhjrDdLeucZ0S3j4V2B5a7GyI=";
   };
 
   outputs = [
@@ -45,11 +45,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   doCheck = true;
 
-  pythonImportsCheck = lib.optionals (!pythonSupport) [ "hpp.environments" ];
+  pythonImportsCheck = lib.optionals (!pythonSupport) [ "hpp.corbaserver.ur5" ];
 
   meta = {
-    description = "Environments and robot descriptions for HPP";
-    homepage = "https://github.com/humanoid-path-planner/hpp-environments";
+    description = "Data specific to robots ur5 and ur10 for hpp-corbaserver";
+    homepage = "https://github.com/humanoid-path-planner/hpp-universal-robot";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ nim65s ];
   };
