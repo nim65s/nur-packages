@@ -103,6 +103,7 @@ let
   hpp-pinocchio = pkgs.callPackage ./pkgs/hpp-pinocchio { };
   hpp-constraints = pkgs.callPackage ./pkgs/hpp-constraints { };
   hpp-baxter = pkgs.callPackage ./pkgs/hpp-baxter { };
+  hpp-core = pkgs.callPackage ./pkgs/hpp-core { };
 in
 {
   inherit
@@ -122,6 +123,7 @@ in
     hpp-pinocchio
     hpp-constraints
     hpp-baxter
+    hpp-core
     py-hpp-environments
     hpp-universal-robot
     py-hpp-universal-robot
