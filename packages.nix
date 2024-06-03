@@ -104,6 +104,7 @@ let
   hpp-constraints = pkgs.callPackage ./pkgs/hpp-constraints { };
   hpp-baxter = pkgs.callPackage ./pkgs/hpp-baxter { };
   hpp-core = pkgs.callPackage ./pkgs/hpp-core { };
+  hpp-manipulation = pkgs.callPackage ./pkgs/hpp-manipulation { };
 in
 {
   inherit
@@ -124,6 +125,7 @@ in
     hpp-constraints
     hpp-baxter
     hpp-core
+    hpp-manipulation
     py-hpp-environments
     hpp-universal-robot
     py-hpp-universal-robot
