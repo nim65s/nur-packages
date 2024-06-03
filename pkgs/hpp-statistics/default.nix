@@ -32,7 +32,7 @@ stdenv.mkDerivation (finalAttrs: {
   doCheck = true;
 
   meta = {
-    description = "";
+    description = "Classes for doing statistics";
     homepage = "https://github.com/humanoid-path-planner/hpp-statistics";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ nim65s ];
