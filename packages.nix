@@ -101,6 +101,7 @@ let
   hpp-statistics = pkgs.callPackage ./pkgs/hpp-statistics { };
   hpp-template-corba = pkgs.callPackage ./pkgs/hpp-template-corba { };
   hpp-pinocchio = pkgs.callPackage ./pkgs/hpp-pinocchio { };
+  hpp-constraints = pkgs.callPackage ./pkgs/hpp-constraints { };
 in
 {
   inherit
@@ -118,6 +119,7 @@ in
     hpp-statistics
     hpp-template-corba
     hpp-pinocchio
+    hpp-constraints
     py-hpp-environments
     hpp-universal-robot
     py-hpp-universal-robot
