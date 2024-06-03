@@ -100,6 +100,7 @@ let
   hpp-util = pkgs.callPackage ./pkgs/hpp-util { };
   hpp-statistics = pkgs.callPackage ./pkgs/hpp-statistics { };
   hpp-template-corba = pkgs.callPackage ./pkgs/hpp-template-corba { };
+  hpp-pinocchio = pkgs.callPackage ./pkgs/hpp-pinocchio { };
 in
 {
   inherit
@@ -116,6 +117,7 @@ in
     hpp-environments
     hpp-statistics
     hpp-template-corba
+    hpp-pinocchio
     py-hpp-environments
     hpp-universal-robot
     py-hpp-universal-robot
