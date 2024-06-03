@@ -98,6 +98,7 @@ let
     }
   );
   hpp-util = pkgs.callPackage ./pkgs/hpp-util { };
+  hpp-statistics = pkgs.callPackage ./pkgs/hpp-statistics { };
 in
 {
   inherit
@@ -112,6 +113,7 @@ in
     hpp-bezier-com-traj
     hpp-util
     hpp-environments
+    hpp-statistics
     py-hpp-environments
     hpp-universal-robot
     py-hpp-universal-robot

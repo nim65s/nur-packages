@@ -2,27 +2,20 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  boost,
   cmake,
-  jrl-cmakemodules,
-  tinyxml-2,
+  hpp-util,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
-  pname = "hpp-util";
+  pname = "hpp-statistics";
   version = "5.0.0";
 
   src = fetchFromGitHub {
     owner = "humanoid-path-planner";
-    repo = "hpp-util";
+    repo = "hpp-statistics";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-wCZtkUnPct44g0rNOk+2Ey60n+AHzr3ZWUmIau8reas=";
+    hash = "sha256-zu4n0izRyufRYfwhPk+HbMQsDh+0Z1A8fVdLXkZEjDY=";
   };
-
-  prePatch = ''
-    substituteInPlace tests/run_debug.sh.in \
-      --replace /bin/bash ${stdenv.shell}
-  '';
 
   outputs = [
     "dev"
@@ -33,16 +26,14 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [ cmake ];
   propagatedBuildInputs = [
-    boost
-    tinyxml-2
-    jrl-cmakemodules
+    hpp-util
   ];
 
   doCheck = true;
 
   meta = {
-    description = "Debugging tools for the HPP project";
-    homepage = "https://github.com/humanoid-path-planner/hpp-util";
+    description = "";
+    homepage = "https://github.com/humanoid-path-planner/hpp-statistics";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ nim65s ];
   };
