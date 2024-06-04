@@ -28,11 +28,6 @@ stdenv.mkDerivation (finalAttrs: {
     })
   ];
 
-  outputs = [
-    "dev"
-    "out"
-  ];
-
   strictDeps = true;
 
   nativeBuildInputs = [ cmake ];

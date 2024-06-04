@@ -32,11 +32,6 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-kzSt+83coQyAn9BsX6waSOFO73P1ng+OBKvWoaibikk=";
   };
 
-  outputs = [
-    "dev"
-    "out"
-  ];
-
   strictDeps = true;
 
   nativeBuildInputs = [ cmake ];

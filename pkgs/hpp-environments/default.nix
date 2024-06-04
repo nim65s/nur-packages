@@ -5,8 +5,7 @@
   cmake,
   jrl-cmakemodules,
   example-robot-data,
-  pythonSupport ? false,
-  python3Packages,
+  python3,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -22,25 +21,16 @@ stdenv.mkDerivation (finalAttrs: {
 
   strictDeps = true;
 
-  nativeBuildInputs = [ cmake ];
-  propagatedBuildInputs =
-    [ jrl-cmakemodules ]
-    ++ lib.optionals (!pythonSupport) [ example-robot-data ]
-    ++ lib.optionals pythonSupport [
-      python3Packages.python
-      python3Packages.eigenpy
-      python3Packages.boost
-      python3Packages.pinocchio
-      python3Packages.example-robot-data
-    ];
-
-  cmakeFlags = [
-    (lib.cmakeBool "BUILD_PYTHON_INTERFACE" pythonSupport)
+  nativeBuildInputs = [
+    python3
+    cmake
+  ];
+  propagatedBuildInputs = [
+    jrl-cmakemodules
+    example-robot-data
   ];
 
   doCheck = true;
-
-  pythonImportsCheck = lib.optionals (!pythonSupport) [ "hpp.environments" ];
 
   meta = {
     description = "Environments and robot descriptions for HPP";

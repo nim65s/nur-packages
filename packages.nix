@@ -39,32 +39,26 @@ let
   osgqt = pkgs.callPackage ./pkgs/osgqt { };
   qgv = pkgs.libsForQt5.callPackage ./pkgs/qgv { };
   collada-dom = pkgs.callPackage ./pkgs/collada-dom { };
-  osg-dae = pkgs.openscenegraph.override { colladaSupport = true; opencollada = collada-dom; };
-  osgqt-dae = osgqt.override { openscenegraph = osg-dae; };
-  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
-    inherit
-      osgqt-dae
-      qgv
-      ;
+  osg-dae = pkgs.openscenegraph.override {
+    colladaSupport = true;
+    opencollada = collada-dom;
   };
+  osgqt-dae = osgqt.override { openscenegraph = osg-dae; };
+  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt-dae qgv; };
   ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
   py-ndcurves = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/ndcurves {
-      pythonSupport = true;
-    }
+    pkgs.callPackage ./pkgs/ndcurves { pythonSupport = true; }
   );
   #multicontact-api = pkgs.callPackage ./pkgs/multicontact-api { };
   #py-multicontact-api = pkgs.python3Packages.toPythonModule (
-    #pkgs.callPackage ./pkgs/multicontact-api {
-      #pythonSupport = true;
-    #}
+  #pkgs.callPackage ./pkgs/multicontact-api {
+  #pythonSupport = true;
+  #}
   #);
 
   hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/hpp-centroidal-dynamics {
-      pythonSupport = true;
-    }
+    pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { pythonSupport = true; }
   );
   hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
     inherit
@@ -86,17 +80,7 @@ let
     }
   );
   hpp-environments = pkgs.callPackage ./pkgs/hpp-environments { };
-  py-hpp-environments = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/hpp-environments {
-      pythonSupport = true;
-    }
-  );
   hpp-universal-robot = pkgs.callPackage ./pkgs/hpp-universal-robot { };
-  py-hpp-universal-robot = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/hpp-universal-robot {
-      pythonSupport = true;
-    }
-  );
   hpp-util = pkgs.callPackage ./pkgs/hpp-util { };
   hpp-statistics = pkgs.callPackage ./pkgs/hpp-statistics { };
   hpp-template-corba = pkgs.callPackage ./pkgs/hpp-template-corba { };
@@ -126,9 +110,7 @@ in
     hpp-baxter
     hpp-core
     hpp-manipulation
-    py-hpp-environments
     hpp-universal-robot
-    py-hpp-universal-robot
     #multicontact-api
     #py-multicontact-api
     py-ndcurves
@@ -137,24 +119,8 @@ in
     qgv
     ;
 
-  gepetto-viewer-corba = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer/corba.nix {
-    inherit gepetto-viewer omniorb omniorbpy;
-  };
-  py-gepetto-viewer = pkgs.python3Packages.toPythonModule (
-    pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer {
-      inherit
-        osgqt
-        qgv
-        ;
-    }
-  );
-  py-gepetto-viewer-corba = pkgs.python3Packages.toPythonModule (
-    pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer/corba.nix {
-      inherit gepetto-viewer omniorb omniorbpy;
-    }
-  );
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
 
-  gepetto-viewer-full = gepetto-viewer.withPlugins(ps: with ps; [ corba ]);
+  gepetto-viewer-full = gepetto-viewer.withPlugins (ps: with ps; [ corba ]);
 }

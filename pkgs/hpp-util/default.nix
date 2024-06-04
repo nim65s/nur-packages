@@ -24,11 +24,6 @@ stdenv.mkDerivation (finalAttrs: {
       --replace /bin/bash ${stdenv.shell}
   '';
 
-  outputs = [
-    "dev"
-    "out"
-  ];
-
   strictDeps = true;
 
   nativeBuildInputs = [ cmake ];

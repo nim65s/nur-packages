@@ -17,17 +17,10 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-zu4n0izRyufRYfwhPk+HbMQsDh+0Z1A8fVdLXkZEjDY=";
   };
 
-  outputs = [
-    "dev"
-    "out"
-  ];
-
   strictDeps = true;
 
   nativeBuildInputs = [ cmake ];
-  propagatedBuildInputs = [
-    hpp-util
-  ];
+  propagatedBuildInputs = [ hpp-util ];
 
   doCheck = true;
 
