@@ -12,7 +12,7 @@
 let
   sway-lone-titlebar-unwrapped =
     (pkgs.sway-unwrapped.overrideAttrs (
-      finalAttrs: previousAttrs: {
+      _: _: {
         src = pkgs.fetchFromGitHub {
           owner = "svalaskevicius";
           repo = "sway";
@@ -44,7 +44,7 @@ let
     opencollada = collada-dom;
   };
   osgqt-dae = osgqt.override { openscenegraph = osg-dae; };
-  gepetto-viewer = pkgs.libsForQt5.callPackage ./pkgs/gepetto-viewer { inherit osgqt-dae qgv; };
+  gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer { };
   ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
   py-ndcurves = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/ndcurves { pythonSupport = true; }
@@ -60,24 +60,9 @@ let
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { pythonSupport = true; }
   );
-  hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
-    inherit
-      hpp-centroidal-dynamics
-      py-hpp-centroidal-dynamics
-      ndcurves
-      py-ndcurves
-      ;
-  };
+  hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj { };
   py-hpp-bezier-com-traj = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
-      pythonSupport = true;
-      inherit
-        hpp-centroidal-dynamics
-        py-hpp-centroidal-dynamics
-        ndcurves
-        py-ndcurves
-        ;
-    }
+    pkgs.callPackage ./pkgs/hpp-bezier-com-traj { pythonSupport = true; }
   );
   hpp-environments = pkgs.callPackage ./pkgs/hpp-environments { };
   hpp-universal-robot = pkgs.callPackage ./pkgs/hpp-universal-robot { };

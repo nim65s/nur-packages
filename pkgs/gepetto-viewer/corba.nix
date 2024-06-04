@@ -10,8 +10,7 @@
   omniorbpy,
   pkg-config,
   python3Packages,
-  qtbase,
-  wrapQtAppsHook,
+  libsForQt5,
 }:
 let
   python = python3Packages.python.withPackages (ps: [
@@ -45,13 +44,13 @@ stdenv.mkDerivation (finalAttrs: {
     boost
     omniorb
     python
-    qtbase
+    libsForQt5.qtbase
   ];
 
   nativeBuildInputs = [
     cmake
     doxygen
-    wrapQtAppsHook
+    libsForQt5.wrapQtAppsHook
     pkg-config
   ];
 

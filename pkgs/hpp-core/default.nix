@@ -3,7 +3,6 @@
   stdenv,
   fetchFromGitHub,
   cmake,
-  hpp-baxter,
   hpp-constraints,
   hpp-pinocchio,
   hpp-statistics,

@@ -11,8 +11,7 @@
   pkg-config,
   python3Packages,
   qgv,
-  qtbase,
-  wrapQtAppsHook,
+  libsForQt5,
   python-qt,
   callPackage,
   writeScript,
@@ -47,7 +46,7 @@ stdenv.mkDerivation {
   buildInputs = [
     boost
     python-qt
-    qtbase
+    libsForQt5.qtbase
     osgqt-dae
     python
   ];
@@ -55,7 +54,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     cmake
     doxygen
-    wrapQtAppsHook
+    libsForQt5.wrapQtAppsHook
     pkg-config
   ];
 
