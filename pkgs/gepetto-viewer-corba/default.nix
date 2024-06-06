@@ -5,7 +5,7 @@
   boost,
   cmake,
   doxygen,
-  gepetto-viewer,
+  gepetto-viewer-base,
   omniorb,
   omniorbpy,
   pkg-config,
@@ -55,7 +55,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   propagatedBuildInputs = [
-    gepetto-viewer
+    gepetto-viewer-base
     omniorbpy
   ];
 

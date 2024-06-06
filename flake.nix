@@ -33,13 +33,15 @@
           # don't put that in imports, or nix-direnv won't autoupdate
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
-              gepetto-viewer-full
+              gepetto-viewer
               (python3.withPackages (
                 ps: with ps; [
                   example-robot-data
                   meshcat
                   pinocchio
                   pymeshlab
+                  py-gepetto-viewer-base
+                  py-gepetto-viewer-corba
                 ]
               ))
             ];

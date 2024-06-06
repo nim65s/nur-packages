@@ -44,7 +44,11 @@ let
     opencollada = collada-dom;
   };
   osgqt-dae = osgqt.override { openscenegraph = osg-dae; };
-  gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer { };
+  gepetto-viewer-base = pkgs.callPackage ./pkgs/gepetto-viewer-base { inherit osg-dae osgqt-dae qgv; };
+  py-gepetto-viewer-base = pkgs.python3Packages.toPythonModule ( gepetto-viewer-base );
+  gepetto-viewer-corba = pkgs.callPackage ./pkgs/gepetto-viewer-corba { inherit gepetto-viewer-base; };
+  py-gepetto-viewer-corba = pkgs.python3Packages.toPythonModule ( gepetto-viewer-corba );
+  gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer { inherit gepetto-viewer-base gepetto-viewer-corba; };
   ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
   py-ndcurves = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/ndcurves { pythonSupport = true; }
@@ -60,25 +64,48 @@ let
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { pythonSupport = true; }
   );
-  hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj { };
+  hpp-bezier-com-traj = pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
+    inherit
+      hpp-centroidal-dynamics
+      py-hpp-centroidal-dynamics
+      ndcurves
+      py-ndcurves
+      ;
+  };
   py-hpp-bezier-com-traj = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/hpp-bezier-com-traj { pythonSupport = true; }
+    pkgs.callPackage ./pkgs/hpp-bezier-com-traj {
+      pythonSupport = true;
+      inherit
+        hpp-centroidal-dynamics
+        py-hpp-centroidal-dynamics
+        ndcurves
+        py-ndcurves
+        ;
+    }
   );
   hpp-environments = pkgs.callPackage ./pkgs/hpp-environments { };
   hpp-universal-robot = pkgs.callPackage ./pkgs/hpp-universal-robot { };
   hpp-util = pkgs.callPackage ./pkgs/hpp-util { };
-  hpp-statistics = pkgs.callPackage ./pkgs/hpp-statistics { };
-  hpp-template-corba = pkgs.callPackage ./pkgs/hpp-template-corba { };
-  hpp-pinocchio = pkgs.callPackage ./pkgs/hpp-pinocchio { };
-  hpp-constraints = pkgs.callPackage ./pkgs/hpp-constraints { };
+  hpp-statistics = pkgs.callPackage ./pkgs/hpp-statistics { inherit hpp-util; };
+  hpp-template-corba = pkgs.callPackage ./pkgs/hpp-template-corba { inherit hpp-util; };
+  hpp-pinocchio = pkgs.callPackage ./pkgs/hpp-pinocchio { inherit hpp-environments hpp-util; };
+  hpp-constraints = pkgs.callPackage ./pkgs/hpp-constraints { inherit hpp-pinocchio hpp-statistics; };
   hpp-baxter = pkgs.callPackage ./pkgs/hpp-baxter { };
-  hpp-core = pkgs.callPackage ./pkgs/hpp-core { };
-  hpp-manipulation = pkgs.callPackage ./pkgs/hpp-manipulation { };
+  hpp-core = pkgs.callPackage ./pkgs/hpp-core {
+    inherit hpp-constraints hpp-pinocchio hpp-statistics;
+  };
+  hpp-manipulation = pkgs.callPackage ./pkgs/hpp-manipulation {
+    inherit hpp-core hpp-universal-robot;
+  };
 in
 {
   inherit
     collada-dom
     gepetto-viewer
+    gepetto-viewer-base
+    py-gepetto-viewer-base
+    gepetto-viewer-corba
+    py-gepetto-viewer-corba
     omniorb
     omniorbpy
     ndcurves
@@ -106,6 +133,4 @@ in
 
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
-
-  gepetto-viewer-full = gepetto-viewer.withPlugins (ps: with ps; [ corba ]);
 }
