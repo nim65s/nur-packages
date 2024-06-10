@@ -22,6 +22,7 @@ let
       }
     )).override
       {
+        enableXWayland = true;
         wlroots = pkgs.wlroots.overrideAttrs {
           version = "0.18.0-dev";
           src = pkgs.fetchFromGitLab {
