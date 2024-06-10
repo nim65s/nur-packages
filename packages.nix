@@ -44,11 +44,17 @@ let
     opencollada = collada-dom;
   };
   osgqt-dae = osgqt.override { openscenegraph = osg-dae; };
-  gepetto-viewer-base = pkgs.callPackage ./pkgs/gepetto-viewer-base { inherit osg-dae osgqt-dae qgv; };
-  py-gepetto-viewer-base = pkgs.python3Packages.toPythonModule ( gepetto-viewer-base );
-  gepetto-viewer-corba = pkgs.callPackage ./pkgs/gepetto-viewer-corba { inherit gepetto-viewer-base; };
-  py-gepetto-viewer-corba = pkgs.python3Packages.toPythonModule ( gepetto-viewer-corba );
-  gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer { inherit gepetto-viewer-base gepetto-viewer-corba; };
+  gepetto-viewer-base = pkgs.callPackage ./pkgs/gepetto-viewer-base {
+    inherit osg-dae osgqt-dae qgv;
+  };
+  py-gepetto-viewer-base = pkgs.python3Packages.toPythonModule gepetto-viewer-base;
+  gepetto-viewer-corba = pkgs.callPackage ./pkgs/gepetto-viewer-corba {
+    inherit gepetto-viewer-base omniorb omniorbpy;
+  };
+  py-gepetto-viewer-corba = pkgs.python3Packages.toPythonModule gepetto-viewer-corba;
+  gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer {
+    inherit gepetto-viewer-base gepetto-viewer-corba;
+  };
   ndcurves = pkgs.callPackage ./pkgs/ndcurves { };
   py-ndcurves = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/ndcurves { pythonSupport = true; }
