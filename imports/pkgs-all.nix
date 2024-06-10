@@ -1,15 +1,7 @@
-{ inputs, lib, ... }:
+_:
 {
 
-  perSystem =
-    {
-      config,
-      self',
-      inputs',
-      pkgs,
-      system,
-      ...
-    }:
+  perSystem = { pkgs, ...  }:
     {
       packages = import ../packages.nix { inherit pkgs; };
     };
