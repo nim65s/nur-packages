@@ -15,7 +15,10 @@
         inherit system;
         overlays = [
           inputs.self.overlays.default
+          (import ../overlays/omniorb.nix)
+          (import ../overlays/osg.nix)
           (import ../overlays/pinocchio.nix)
+          (import ../overlays/python.nix)
         ];
         config = { };
       };

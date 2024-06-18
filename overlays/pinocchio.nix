@@ -1,6 +1,6 @@
 final: prev:
 let
-  # apply #2284
+  # apply pinocchio#2284
   florent-devel = final.fetchFromGitHub {
     owner = "florent-lamiraux";
     repo = "pinocchio";
@@ -18,8 +18,14 @@ in
     src = florent-devel;
     prePatch = no-test-cpp-contact-cholesky;
   };
-  python3Packages.pinocchio = prev.python3Packages.pinocchio.overrideAttrs {
-    src = florent-devel;
-    prePatch = no-test-cpp-contact-cholesky;
-  };
+  pythonPackagesOverlays = [
+    (
+      python-final: python-prev: {
+        pinocchio = python-prev.pinocchio.overrideAttrs {
+          src = florent-devel;
+          prePatch = no-test-cpp-contact-cholesky;
+        };
+      }
+    )
+  ];
 }
