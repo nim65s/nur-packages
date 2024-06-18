@@ -6,13 +6,22 @@
 # commands such as:
 #     nix-build -A mypackage
 
-{
-  pkgs ? import <nixpkgs> { },
-}:
+let
+  overlays = import ./overlays; # nixpkgs overlays
+  pkgs = import <nixpkgs> {
+    # TODO: clearly, it is not the right way to do this.
+    overlays = [
+      (import ./overlays/omniorb.nix)
+      (import ./overlays/osg.nix)
+      (import ./overlays/pinocchio.nix)
+      (import ./overlays/python.nix)
+    ];
+  };
+in
 {
   # The `lib`, `modules`, and `overlays` names are special
+  inherit overlays;
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
-  overlays = import ./overlays; # nixpkgs overlays
 }
 // import ./packages.nix { inherit pkgs; }
