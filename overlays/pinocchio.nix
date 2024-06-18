@@ -19,13 +19,11 @@ in
     prePatch = no-test-cpp-contact-cholesky;
   };
   pythonPackagesOverlays = [
-    (
-      python-final: python-prev: {
-        pinocchio = python-prev.pinocchio.overrideAttrs {
-          src = florent-devel;
-          prePatch = no-test-cpp-contact-cholesky;
-        };
-      }
-    )
+    (python-final: python-prev: {
+      pinocchio = python-prev.pinocchio.overrideAttrs {
+        src = florent-devel;
+        prePatch = no-test-cpp-contact-cholesky;
+      };
+    })
   ];
 }
