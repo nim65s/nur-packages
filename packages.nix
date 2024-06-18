@@ -58,6 +58,7 @@ let
   #}
   #);
 
+  proxsuite = pkgs.callPackage ./pkgs/proxsuite { };
   hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { pythonSupport = true; }
@@ -90,7 +91,7 @@ let
   hpp-constraints = pkgs.callPackage ./pkgs/hpp-constraints { inherit hpp-pinocchio hpp-statistics; };
   hpp-baxter = pkgs.callPackage ./pkgs/hpp-baxter { };
   hpp-core = pkgs.callPackage ./pkgs/hpp-core {
-    inherit hpp-constraints hpp-pinocchio hpp-statistics;
+    inherit hpp-constraints hpp-pinocchio hpp-statistics proxsuite;
   };
   hpp-manipulation = pkgs.callPackage ./pkgs/hpp-manipulation {
     inherit hpp-core hpp-universal-robot;
@@ -119,6 +120,7 @@ in
     hpp-manipulation
     hpp-universal-robot
     #multicontact-api
+    proxsuite
     #py-multicontact-api
     py-ndcurves
     py-hpp-centroidal-dynamics

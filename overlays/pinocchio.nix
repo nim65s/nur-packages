@@ -1,11 +1,11 @@
 final: prev:
 let
-  # apply pinocchio#2284
+  # after pinocchio#2284 for pin3+hpp
   florent-devel = final.fetchFromGitHub {
-    owner = "florent-lamiraux";
+    owner = "stack-of-tasks";
     repo = "pinocchio";
-    rev = "cfddbdf46cb30a4e78c5bbf9239d751c92cb5535";
-    hash = "sha256-VTCm9MzcGzqmfZNZCU2t5CsJ2sXSARONdSMmWCDw3GY=";
+    rev = "be4a8369b559c9a545f022b11517a89679d576af";
+    hash = "sha256-h5iwwRvvgE4O+tqLNVmLs7M6PdbFX2pvTGatDbXzhaQ=";
   };
   # TODO: test-cpp-contact-cholesky fails
   no-test-cpp-contact-cholesky = ''
