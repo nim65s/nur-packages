@@ -124,11 +124,11 @@ in
     hpp-environments
     hpp-statistics
     hpp-template-corba
-    #hpp-pinocchio
-    #hpp-constraints
+    hpp-pinocchio
+    hpp-constraints
     hpp-baxter
-    #hpp-core
-    #hpp-manipulation
+    hpp-core
+    hpp-manipulation
     hpp-universal-robot
     #multicontact-api
     #py-multicontact-api
