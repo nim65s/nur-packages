@@ -111,6 +111,7 @@ let
   };
   py-hpp-gepetto-viewer = pkgs.python3Packages.toPythonModule hpp-gepetto-viewer;
   hpp-plot = pkgs.callPackage ./pkgs/hpp-plot { inherit gepetto-viewer-corba; };
+  hpp-gui = pkgs.callPackage ./pkgs/hpp-gui { };
   gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer {
     inherit
       gepetto-viewer-base
@@ -132,6 +133,7 @@ in
     osgqt
     hpp-centroidal-dynamics
     hpp-bezier-com-traj
+    hpp-gui
     hpp-util
     hpp-environments
     hpp-statistics

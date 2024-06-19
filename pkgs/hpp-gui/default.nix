@@ -13,14 +13,14 @@ let
   python = python3Packages.python.withPackages (ps: [ ps.boost ]);
 in
 stdenv.mkDerivation (finalAttrs: {
-  pname = "hpp-plot";
+  pname = "hpp-gui";
   version = "5.0.0";
 
   src = fetchFromGitHub {
     owner = "humanoid-path-planner";
-    repo = "hpp-plot";
+    repo = "hpp-gui";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-LMJpXyw5QvhrC8xwKBHpeZyUSEUnUhCE1uTDXRBnNqI=";
+    hash = "sha256-TjOhR78rsfvaBx8hkJ8l6zdptI8ZZ9z8FkhisnwiFX4=";
   };
 
   strictDeps = true;
@@ -42,8 +42,8 @@ stdenv.mkDerivation (finalAttrs: {
   doCheck = true;
 
   meta = {
-    description = "Graphical utilities for constraint graphs in hpp-manipulation";
-    homepage = "https://github.com/humanoid-path-planner/hpp-plot";
+    description = "Qt based GUI for HPP project";
+    homepage = "https://github.com/humanoid-path-planner/hpp-gui";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ nim65s ];
   };
