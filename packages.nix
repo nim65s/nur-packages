@@ -101,7 +101,8 @@ let
   hpp-manipulation = pkgs.callPackage ./pkgs/hpp-manipulation {
     inherit hpp-core hpp-universal-robot;
   };
-  hpp-corbaserver = pkgs.callPackage ./pkgs/hpp-corbaserver { inherit hpp-core; };
+  hpp-manipulation-urdf = pkgs.callPackage ./pkgs/hpp-manipulation-urdf { inherit hpp-manipulation; };
+  hpp-corbaserver = pkgs.callPackage ./pkgs/hpp-corbaserver { inherit hpp-core hpp-template-corba; };
 in
 {
   inherit
@@ -125,6 +126,7 @@ in
     hpp-baxter
     hpp-core
     hpp-manipulation
+    hpp-manipulation-urdf
     hpp-universal-robot
     #multicontact-api
     proxsuite
