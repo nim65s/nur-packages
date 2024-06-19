@@ -40,10 +40,13 @@
                 ps: with ps; [
                   example-robot-data
                   meshcat
+                  omniorbpy
                   pinocchio
                   pymeshlab
                   py-gepetto-viewer-base
                   py-gepetto-viewer-corba
+                  py-hpp-corbaserver
+                  py-hpp-gepetto-viewer
                 ]
               ))
             ];
