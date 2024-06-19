@@ -110,13 +110,19 @@ let
     inherit gepetto-viewer-corba hpp-corbaserver;
   };
   py-hpp-gepetto-viewer = pkgs.python3Packages.toPythonModule hpp-gepetto-viewer;
-  hpp-plot = pkgs.callPackage ./pkgs/hpp-plot { inherit gepetto-viewer-corba; };
-  hpp-gui = pkgs.callPackage ./pkgs/hpp-gui { };
+  hpp-plot = pkgs.callPackage ./pkgs/hpp-plot {
+    inherit gepetto-viewer-corba hpp-manipulation-corba;
+  };
+  hpp-gui = pkgs.callPackage ./pkgs/hpp-gui { inherit gepetto-viewer-corba hpp-manipulation-corba; };
+  hpp-practicals = pkgs.callPackage ./pkgs/hpp-practicals {
+    inherit hpp-gepetto-viewer hpp-gui hpp-plot;
+  };
   gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer {
     inherit
       gepetto-viewer-base
       gepetto-viewer-corba
       hpp-gepetto-viewer
+      hpp-gui
       hpp-plot
       ;
   };
@@ -148,6 +154,7 @@ in
     hpp-manipulation-corba
     hpp-manipulation-urdf
     hpp-plot
+    hpp-practicals
     hpp-romeo
     hpp-tutorial
     hpp-universal-robot
