@@ -104,6 +104,9 @@ let
   hpp-manipulation-urdf = pkgs.callPackage ./pkgs/hpp-manipulation-urdf { inherit hpp-manipulation; };
   hpp-corbaserver = pkgs.callPackage ./pkgs/hpp-corbaserver { inherit hpp-core hpp-template-corba; };
   hpp-romeo = pkgs.callPackage ./pkgs/hpp-romeo { inherit hpp-corbaserver; };
+  hpp-manipulation-corba = pkgs.callPackage ./pkgs/hpp-manipulation-corba {
+    inherit hpp-corbaserver hpp-manipulation-urdf;
+  };
 in
 {
   inherit
@@ -127,6 +130,7 @@ in
     hpp-baxter
     hpp-core
     hpp-manipulation
+    hpp-manipulation-corba
     hpp-manipulation-urdf
     hpp-romeo
     hpp-universal-robot

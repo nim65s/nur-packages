@@ -26,7 +26,7 @@ stdenv.mkDerivation (finalAttrs: {
   propagatedBuildInputs = [ hpp-corbaserver ];
 
   meta = {
-    description = "";
+    description = "Python and ros launch files for Romeo robot in hpp";
     homepage = "https://github.com/humanoid-path-planner/hpp_romeo";
     license = lib.licenses.bsd2;
     maintainers = with lib.maintainers; [ nim65s ];
