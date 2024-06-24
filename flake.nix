@@ -36,6 +36,8 @@
             nativeBuildInputs = [ config.treefmt.build.wrapper ];
             packages = with pkgs; [
               gepetto-viewer
+              hpp-practicals
+              hpp-tutorial
               (python3.withPackages (
                 ps: with ps; [
                   example-robot-data
@@ -47,6 +49,9 @@
                   py-gepetto-viewer-corba
                   py-hpp-corbaserver
                   py-hpp-gepetto-viewer
+                  py-hpp-manipulation-corba
+                  py-hpp-practicals
+                  py-hpp-tutorial
                 ]
               ))
             ];

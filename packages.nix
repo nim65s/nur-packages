@@ -105,7 +105,9 @@ let
   hpp-manipulation-corba = pkgs.callPackage ./pkgs/hpp-manipulation-corba {
     inherit hpp-corbaserver hpp-manipulation-urdf;
   };
+  py-hpp-manipulation-corba = pkgs.python3Packages.toPythonModule hpp-manipulation-corba;
   hpp-tutorial = pkgs.callPackage ./pkgs/hpp-tutorial { inherit hpp-manipulation-corba; };
+  py-hpp-tutorial = pkgs.python3Packages.toPythonModule hpp-tutorial;
   hpp-gepetto-viewer = pkgs.callPackage ./pkgs/hpp-gepetto-viewer {
     inherit gepetto-viewer-corba hpp-corbaserver;
   };
@@ -117,6 +119,7 @@ let
   hpp-practicals = pkgs.callPackage ./pkgs/hpp-practicals {
     inherit hpp-gepetto-viewer hpp-gui hpp-plot;
   };
+  py-hpp-practicals = pkgs.python3Packages.toPythonModule hpp-practicals;
   gepetto-viewer = pkgs.callPackage ./pkgs/gepetto-viewer {
     inherit
       gepetto-viewer-base
@@ -166,6 +169,9 @@ in
     py-ndcurves
     py-hpp-centroidal-dynamics
     py-hpp-bezier-com-traj
+    py-hpp-manipulation-corba
+    py-hpp-practicals
+    py-hpp-tutorial
     qgv
     ;
 
