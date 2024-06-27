@@ -59,9 +59,9 @@ let
   py-proxsuite = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/proxsuite { pythonSupport = true; }
   );
-  mim-solvers = pkgs.callPackage ./pkgs/mim-solvers { };
+  mim-solvers = pkgs.callPackage ./pkgs/mim-solvers { inherit proxsuite; };
   py-mim-solvers = pkgs.python3Packages.toPythonModule (
-    pkgs.callPackage ./pkgs/mim-solvers { pythonSupport = true; }
+    pkgs.callPackage ./pkgs/mim-solvers { inherit proxsuite; pythonSupport = true; }
   );
   hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
