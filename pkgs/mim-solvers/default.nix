@@ -6,6 +6,7 @@
   crocoddyl,
   jrl-cmakemodules,
   proxsuite,
+  py-proxsuite,
   pythonSupport ? false,
   python3Packages,
 }:
@@ -42,7 +43,7 @@ stdenv.mkDerivation {
     ]
     ++ lib.optionals pythonSupport [
       python3Packages.crocoddyl
-      python3Packages.proxsuite
+      py-proxsuite
     ];
   checkInputs = lib.optionals pythonSupport [
     python3Packages.example-robot-data
