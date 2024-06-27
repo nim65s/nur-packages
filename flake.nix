@@ -52,6 +52,7 @@
                   py-hpp-manipulation-corba
                   py-hpp-practicals
                   py-hpp-tutorial
+                  py-mim-solvers
                 ]
               ))
             ];
