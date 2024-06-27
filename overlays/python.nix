@@ -1,5 +1,10 @@
 final: prev: {
-  pythonPackagesOverlays = [ ];
+  pythonPackagesOverlays = [
+    (_: _: {
+      mim-solvers = final.py-mim-solvers;
+      proxsuite = final.py-proxsuite;
+    })
+  ];
   python3 =
     let
       self = prev.python3.override {

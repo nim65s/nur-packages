@@ -56,6 +56,13 @@ let
   #);
 
   proxsuite = pkgs.callPackage ./pkgs/proxsuite { };
+  py-proxsuite = pkgs.python3Packages.toPythonModule (
+    pkgs.callPackage ./pkgs/proxsuite { pythonSupport = true; }
+  );
+  mim-solvers = pkgs.callPackage ./pkgs/mim-solvers { };
+  py-mim-solvers = pkgs.python3Packages.toPythonModule (
+    pkgs.callPackage ./pkgs/mim-solvers { pythonSupport = true; }
+  );
   hpp-centroidal-dynamics = pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { };
   py-hpp-centroidal-dynamics = pkgs.python3Packages.toPythonModule (
     pkgs.callPackage ./pkgs/hpp-centroidal-dynamics { pythonSupport = true; }
@@ -161,6 +168,7 @@ in
     hpp-romeo
     hpp-tutorial
     hpp-universal-robot
+    mim-solvers
     #multicontact-api
     proxsuite
     #py-multicontact-api
@@ -172,6 +180,8 @@ in
     py-hpp-manipulation-corba
     py-hpp-practicals
     py-hpp-tutorial
+    py-mim-solvers
+    py-proxsuite
     qgv
     ;
 
