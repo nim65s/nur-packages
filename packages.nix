@@ -129,6 +129,8 @@ let
       hpp-plot
       ;
   };
+  open3d = pkgs.callPackage ./pkgs/open3d { };
+  py-open3d = pkgs.python3Packages.toPythonModule open3d;
 in
 {
   inherit
@@ -162,6 +164,7 @@ in
     hpp-tutorial
     hpp-universal-robot
     #multicontact-api
+    open3d
     proxsuite
     #py-multicontact-api
     py-hpp-corbaserver
@@ -172,6 +175,7 @@ in
     py-hpp-manipulation-corba
     py-hpp-practicals
     py-hpp-tutorial
+    py-open3d
     qgv
     ;
 
