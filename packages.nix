@@ -129,7 +129,10 @@ let
       hpp-plot
       ;
   };
-  open3d = pkgs.callPackage ./pkgs/open3d { };
+  liblzf = pkgs.callPackage ./pkgs/liblzf { };
+  tinygltf = pkgs.callPackage ./pkgs/tinygltf { };
+  filament = pkgs.callPackage ./pkgs/filament { };
+  open3d = pkgs.callPackage ./pkgs/open3d { inherit liblzf tinygltf filament; };
   py-open3d = pkgs.python3Packages.toPythonModule open3d;
 in
 {
@@ -163,6 +166,7 @@ in
     hpp-romeo
     hpp-tutorial
     hpp-universal-robot
+    liblzf
     #multicontact-api
     open3d
     proxsuite
@@ -177,6 +181,8 @@ in
     py-hpp-tutorial
     py-open3d
     qgv
+    tinygltf
+    filament
     ;
 
   gruppled-white-lite-cursors = pkgs.callPackage ./pkgs/gruppled-lite-cursors {

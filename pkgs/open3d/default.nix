@@ -13,6 +13,14 @@
   glfw,
   jsoncpp,
   libpng,
+  liblzf,
+  tinygltf,
+  tinyobjloader,
+  filament,
+  qhull,
+  gtest,
+  imgui,
+  fmt,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -30,11 +38,19 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     eigen
     libpng
+    liblzf
     assimp
     glew
     nanoflann
     glfw
     jsoncpp
+    tinygltf
+    imgui
+    filament
+    tinyobjloader
+    qhull
+    fmt
+    gtest
   ];
 
   cmakeFlags = [
