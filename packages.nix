@@ -40,23 +40,9 @@ let
           }
         );
       };
-  liblzf = pkgs.callPackage ./pkgs/liblzf { };
-  tinygltf = pkgs.callPackage ./pkgs/tinygltf { };
-  filament = pkgs.callPackage ./pkgs/filament { };
-  open3d = pkgs.callPackage ./pkgs/open3d { inherit liblzf tinygltf filament; };
-  py-open3d = pkgs.python3Packages.toPythonModule open3d;
 in
 {
-  inherit
-    liblzf
-    #multicontact-api
-    open3d
-    #py-multicontact-api
-    py-open3d
-    sway-lone-titlebar-unwrapped
-    tinygltf
-    filament
-    ;
+  inherit sway-lone-titlebar-unwrapped;
 
   sauce-code-pro = pkgs.nerdfonts.override { fonts = [ "SourceCodePro" ]; };
   sway-lone-titlebar = pkgs.sway.override { sway-unwrapped = sway-lone-titlebar-unwrapped; };
